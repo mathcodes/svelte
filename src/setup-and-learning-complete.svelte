@@ -1,10 +1,23 @@
 <script>
   let firstName = "Jon";
-  let lastName = "Chrisfftie";
+  let lastName = "Christie";
 	let bio = "• Web Developer • Educator"
   let color = "purple"
   let showText = false
-
+  let users = [
+    {
+      id: '1',
+      name: 'Jonathan'
+    },
+    {
+      id: '2',
+      name: 'Joanne'
+    },
+    {
+      id: '3',
+      name: 'Nathan'
+    },
+  ]
   $: name = firstName + ' ' + lastName + ' ' + bio
  
 
@@ -32,6 +45,7 @@
     console.log(name)
     color =	 getRandomItem(array);
     showText = !showText 
+    users = [...users, { id: '4', name: 'Jen'}]
   };
   console.log(name)
  
@@ -42,13 +56,18 @@
 <main>
   
   <h1 style="color: {color}">Hello {name}!</h1>
-  <p>Visit our site!</p>
   {#if showText}
     <p>Visit our site!</p>
+    {:else}
+    <p>No Text</p>
   {/if}
 
   <!-- <button on:click={()=> color = 'purple'}>CLICK ME </button> -->
   <button on:click={toggle}>CLICK ME </button>
+
+  {#each users as user (user.id)}
+    <h3>{user.id}: {user.name}</h3>
+  {/each}
 </main>
 
 <!-- STYLE TAGS  -->
